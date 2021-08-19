@@ -3,6 +3,16 @@
   margin: 0;
 }
 
+nav {
+  margin-bottom: 20px;
+}
+header {
+  text-align: center;
+}
+
+header > h1 {
+  margin-bottom: 20px;
+}
 nav > ul {
   list-style-type: none;
   border: 2px solid black;
@@ -15,12 +25,10 @@ nav > ul {
 nav > ul > li > a {
   color: gray;
   text-decoration: none;
-}
-
-nav > ul > li > a:hover {
-  color: orange;
   transition-duration: 400ms;
   transition-timing-function: ease-in-out;
 }
 
-h1
+nav > ul > li > a:hover {
+  color: orange;
+}
