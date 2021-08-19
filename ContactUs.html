@@ -3,6 +3,7 @@
 <head>
     <title>Andrew's Cafe</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
 <body>
   <nav>
@@ -18,7 +19,24 @@
 
   <header>
       <h1>Andrew's Cafe - Contact Us</h1>
-      <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p>
+
   </header>
+  <main>
+    <div class="contact-form">
+      <label for="email">Email:</label>
+      <input type="text" name="email" id="email">
+      <label for="fullName">Full Name:</label>
+      <input type="text" name="fullName"id="fullName">
+      <label for="feedbackType">Feedback Type:</label>
+      <select name="feedbackType" id="feedbackType">
+          <option value="review">Review</option>
+          <option value="complaint">Complaint</option>
+          <option value="event">Book Event</option>
+      </select>
+    </div>
+  </main>
+  <footer>
+    <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p>
+  </footer>
 </body>
 </html>
