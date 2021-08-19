@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+nav > ul {
+  list-style-type: none;
+  border: 2px solid black;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav > ul > li > a {
+  color: gray;
+  text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+  color: orange;
+  transition-duration: 400ms;
+  transition-timing-function: ease-in-out;
+}
+
+h1
