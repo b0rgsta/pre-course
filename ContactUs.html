@@ -22,22 +22,23 @@
 
   </header>
   <main>
-    <div class="contact-form">
+    <form class="contact-form">
+      <!-- email -->
       <label for="email">Email:</label>
-      <input type="text" name="email" id="email">
+      <input type="text" name="email" id="email" required>
+      <!-- full name -->
       <label for="fullName">Full Name:</label>
       <input type="text" name="fullName"id="fullName">
-
-      </select>
+      <!-- Message -->
       <label for="message">Message:</label>
-      <textarea name="comment" id="comment" text cols="20" rows="3">
-Leave your message here
-      </textarea>
-
+      <textarea placeholder="Leave your message here" name="message" id="message" text cols="20" rows="3" required></textarea>
+      <!-- clear button -->
       <button>Clear</button>
-      <button>Submit</button>
-    </div>
+      <!-- submit button-->
+      <input type="submit">
+    </form>
   </main>
+
   <footer>
     <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p>
   </footer>
