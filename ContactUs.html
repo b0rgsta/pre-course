@@ -1,46 +1,78 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- declares file type for browser to read-->
 <html>
-<head>
-    <title>Andrew's Cafe</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="contact.css">
+
+<head> <!-- meta data -->
+  <title>Andrew's Cafe</title> <!-- tab title -->
+  <link rel="stylesheet" href="styles.css"> <!-- links css to this html -->
+  <link rel="stylesheet" href="contact.css">
 </head>
-<body>
-  <nav>
-    <ul>
-      <li> 
-        <a href="Home.html">Home</a>
+
+<body> <!-- anything seen on the screen by a user -->
+  <nav> <!-- navigation section used to navigate to other pages-->
+    <ul> <!-- unordered list -->
+      <li> <!-- list item -->
+        <a href="Home.html">Home</a> <!-- used to link pages-->
       </li>
-      <li> 
+      <li>
         <a href="ContactUs.html">Contact Us</a>
       </li>
     </ul>
   </nav>
 
-  <header>
-      <h1>Andrew's Cafe - Contact Us</h1>
+  <header> <!-- top section of a page -->
+    <h1>Andrew's Cafe - Contact Us</h1> <!-- h1 = largest heading -->
 
   </header>
-  <main>
-    <form class="contact-form">
+  <main> <!-- section used for main contents on a page -->
+    <form class="contact-form" onsubmit="return submitMessage(event);">
       <!-- email -->
       <label for="email">Email:</label>
       <input type="text" name="email" id="email" required>
       <!-- full name -->
       <label for="fullName">Full Name:</label>
-      <input type="text" name="fullName"id="fullName">
+      <input type="text" name="fullName" id="fullName">
       <!-- Message -->
       <label for="message">Message:</label>
-      <textarea placeholder="Leave your message here" name="message" id="message" text cols="20" rows="3" required></textarea>
+      <!-- You can add a placeholder if you'd like instead of adding text inside -->
+      <textarea placeholder="Leave your message here" name="message" id="message" text cols="20" rows="3"
+        required></textarea>
       <!-- clear button -->
       <button>Clear</button>
       <!-- submit button-->
-      <input type="submit">
+      <input type="submit" value="Submit">
     </form>
   </main>
 
-  <footer>
+  <footer> <!-- bottom section of a page -->
     <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p>
   </footer>
+
+  <script> //where you can add JS code in HTML
+      function submitMessage(event) { //declares a function called submitMessage with one parameter called 'event'
+      event.preventDefault(); //prevents the page from default reset
+
+      const email = document.getElementById("email").value; //creates a variable assigned to the value of the element with the ID 'email'.
+      const fullName = document.getElementById("fullName").value;
+      const message = document.getElementById("message").value;
+      
+      const messageObject = { // creates a variable assigned to an object containing other variables
+        email, fullName, message 
+      };
+
+      let currentMessages = []; // creates a variable with empty array
+      if (window.sessionStorage.getItem("messages")) { //if sessionStorage contains 'messages' key then currentMessages is assigned 'messages'object.
+      currentMessages = //assigns "messages" to currentMessages in object form.
+            JSON.parse(
+              window.sessionStorage.getItem("messages")
+              );
+      }
+
+      currentMessages.push(messageObject); //adds the value of messageObject to the end of currentMessages in object form.
+      window.sessionStorage.setItem( //saves currentMessages to sessionStorage in string form under the key "messages".
+        "messages",
+        JSON.stringify(currentMessages)
+        );
+      }
+  </script>
 </body>
 </html>
