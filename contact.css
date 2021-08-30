@@ -16,3 +16,17 @@ main > .contact-form {
   grid-template-columns: 1fr 2fr;
 grid-gap: 10px;
 }
+
+footer {
+  margin-top: 50px;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+  .form-title-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }

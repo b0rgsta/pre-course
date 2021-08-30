@@ -1,5 +1,5 @@
 <!DOCTYPE html> <!-- declares file type for browser to read-->
-<html>
+<html> <!-- start of html document-->
 
 <head> <!-- meta data -->
   <title>Andrew's Cafe</title> <!-- tab title -->
@@ -11,7 +11,7 @@
   <nav> <!-- navigation section used to navigate to other pages-->
     <ul> <!-- unordered list -->
       <li> <!-- list item -->
-        <a href="Home.html">Home</a> <!-- used to link pages-->
+        <a href="Home.html">Home</a> <!-- used to link to other pages-->
       </li>
       <li>
         <a href="ContactUs.html">Contact Us</a>
@@ -23,8 +23,8 @@
     <h1>Andrew's Cafe - Contact Us</h1> <!-- h1 = largest heading -->
 
   </header>
-  <main> <!-- section used for main contents on a page -->
-    <form class="contact-form" onsubmit="return submitMessage(event);">
+  <main> <!-- section used for main content on a page -->
+    <form class="contact-form" onsubmit="return submitMessage(event);"> <!-- creates a section on a page focused on receiving inputs from a user-->
       <!-- email -->
       <label for="email">Email:</label>
       <input type="text" name="email" id="email" required>
@@ -39,15 +39,36 @@
       <!-- clear button -->
       <button>Clear</button>
       <!-- submit button-->
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit"> <!-- instructs the submit button to perform the submit event on the form-->
     </form>
   </main>
 
   <footer> <!-- bottom section of a page -->
-    <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p>
+
+    <div class ="form-title-section"> <!-- div with class used to apply css to this particular section of html code-->
+      <h3>Contact Messages</h3>
+      <button onclick="deleteMessages();">Clear Messages</button> <!-- instructs the click of button to perform deletemessages() function-->
+    </div>
+
+    <div class="form-wrapper"> <!-- creates a section for messages to render -->
+      <dl id= "currentMessages"> <!-- creates a section for list items to appear-->
+
+      </dl>
+    </div>
+
+    <p class="contactUs">m: 0402 292 292 <br>e: andrewborg86@gmail.com<br>100 City Road, Sydney NSW 2000</p> <!-- creates a paragraph -->
   </footer>
 
-  <script> //where you can add JS code in HTML
+  <script> //script tag tells browser to stop reading html and begin reading as JS code
+
+  function deleteMessages() { //declares a new function 
+    if (window.sessionStorage.getItem("messages")) { //checks if key 'messages'exists, if true the stores messages will be removed
+      window.sessionStorage.removeItem("messages");
+    }
+
+    renderMessages(); //calls function renderMessages
+  }
+  //where you can add JS code in HTML
       function submitMessage(event) { //declares a function called submitMessage with one parameter called 'event'
       event.preventDefault(); //prevents the page from default reset
 
@@ -59,7 +80,8 @@
         email, fullName, message 
       };
 
-      let currentMessages = []; // creates a variable with empty array
+      let currentMessages = []; // creates a variable with an empty array
+
       if (window.sessionStorage.getItem("messages")) { //if sessionStorage contains 'messages' key then currentMessages is assigned 'messages'object.
       currentMessages = //assigns "messages" to currentMessages in object form.
             JSON.parse(
@@ -72,7 +94,36 @@
         "messages",
         JSON.stringify(currentMessages)
         );
+
+        renderMessages(); //calls the function
       }
+
+      function renderMessages() { //creates function
+        let currentMessages = []; //create variable asigned with empty array
+
+      if (window.sessionStorage.getItem("messages")) { //checks if 'messages'exists in session storage
+      currentMessages = //if true, retrieve item in object form and assigns to currentMessages
+            JSON.parse(
+              window.sessionStorage.getItem("messages")
+              );
+      }
+
+      let listItems = []; //creates variable asigned with empty array
+      for (let i = 0; i < currentMessages.length; i++) { //for loop runs for as long as the length of array items stores in session storage
+        let listItem = ""; //creates variable asigned with an empty string
+        const msg = currentMessages[i]; //creates variable assigned to current loop iteration of i 
+        listItem += `<dt>${msg.fullName} - ${msg.email}</dt>`; //adds fullname and email to listItem variable
+        listItem += `<dd>${msg.message}</dd>`; //adds message to listItem
+        listItem += `<br />`; //adds a break to the list item to seperate the next loop of listItem data.
+        listItems.push(listItem); //adds listItem data to the end of listItems.
+      }
+
+      let descList = document.getElementById('currentMessages'); //creates variable asigned to id tag currentMessages
+      descList.innerHTML = listItems.join(''); //returns the html content of decsList and asigns it to listItems. returns listItems as a string
+      }
+
+      renderMessages(); //runs the function
+
   </script>
 </body>
 </html>
